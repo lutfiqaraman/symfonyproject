@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +13,7 @@ class MainController extends AbstractController
     #[Route('/main', name: 'main')]
     public function index(): Response
     {
-        return new Response(content: '<h1>Main Page</h1>');
+        return $this->render('main/index.html.twig');
     }
 
     #[Route('/custom/{name?}', name: 'custom')]
@@ -21,7 +22,9 @@ class MainController extends AbstractController
         $name = ($request)->get('name');
         $content = '<p>Hello ' . $name .' ... </p>';
 
-        return new Response(content: $content);
+        return $this->render('main/custom.html.twig', [
+            'name' => $name
+        ]);
     }
 
 
