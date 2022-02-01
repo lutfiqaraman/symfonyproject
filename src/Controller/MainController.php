@@ -20,7 +20,6 @@ class MainController extends AbstractController
     public function custom(Request $request) : Response
     {
         $name = ($request)->get('name');
-        $content = '<p>Hello ' . $name .' ... </p>';
 
         return $this->render('main/custom.html.twig', [
             'name' => $name
